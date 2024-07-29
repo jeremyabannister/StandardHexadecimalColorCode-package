@@ -1,23 +1,56 @@
 // swift-tools-version: 5.10
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
+///
 import PackageDescription
 
+
+///
 let package = Package(
     name: "StandardHexadecimalColorCode-package",
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "StandardHexadecimalColorCode-package",
-            targets: ["StandardHexadecimalColorCode-package"]),
+            name: "StandardHexadecimalColorCode-module",
+            targets: ["StandardHexadecimalColorCode-module"]
+        ),
+    ],
+    dependencies: [
+        
+        ///
+        .package(
+            url: "https://github.com/jeremyabannister/AssertionToolkit",
+            "0.1.0" ..< "0.2.0"
+        ),
+        
+        ///
+        .package(
+            url: "https://github.com/jeremyabannister/ColorCode-RGBA-256-package",
+            "0.1.0" ..< "0.2.0"
+        ),
+        
+        ///
+        .package(
+            url: "https://github.com/jeremyabannister/RandomlyGeneratable-package",
+            "0.1.0" ..< "0.2.0"
+        ),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
+        
+        ///
         .target(
-            name: "StandardHexadecimalColorCode-package"),
+            name: "StandardHexadecimalColorCode-module",
+            dependencies: [
+                .product(name: "ColorCode-RGBA-256-module", package: "ColorCode-RGBA-256-package"),
+            ]
+        ),
+        
+        ///
         .testTarget(
-            name: "StandardHexadecimalColorCode-packageTests",
-            dependencies: ["StandardHexadecimalColorCode-package"]),
+            name: "StandardHexadecimalColorCode-module-tests",
+            dependencies: [
+                "StandardHexadecimalColorCode-module",
+                "AssertionToolkit",
+                .product(name: "RandomlyGeneratable-module", package: "RandomlyGeneratable-package"),
+            ]
+        ),
     ]
 )
