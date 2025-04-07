@@ -5,7 +5,7 @@
 //  Created by Jeremy Bannister on 4/25/23.
 //
 
-public struct StandardHexadecimalColorCode: Hashable {
+public struct StandardHexadecimalColorCode: Hashable, Sendable {
     
     public var rgbaColorCode: ColorCode_RGBA_256
     

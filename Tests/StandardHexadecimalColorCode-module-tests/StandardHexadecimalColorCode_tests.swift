@@ -2,6 +2,14 @@ struct StandardHexadecimalColorCode_tests {
     typealias Subject = StandardHexadecimalColorCode
     
     @Test
+    func conformances() {
+        func imagine(subject: Subject) {
+            let _: any Hashable = subject
+            let _: any Sendable = subject
+        }
+    }
+    
+    @Test
     func init_rgba() {
         func randomizedTest() {
             let rgba: ColorCode_RGBA_256 = .generateRandom()

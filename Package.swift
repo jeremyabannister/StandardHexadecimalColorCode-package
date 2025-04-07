@@ -17,7 +17,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/jeremyabannister/ColorCode-RGBA-256-package",
-            .upToNextMinor(from: "0.1.2")
+            .upToNextMinor(from: "0.1.4")
         ),
     ],
     targets: [
