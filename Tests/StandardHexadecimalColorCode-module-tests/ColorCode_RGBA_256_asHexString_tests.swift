@@ -1,12 +1,6 @@
-//
-//  ColorCode_RGBA_256_asHexString_tests.swift
-//  
-//
-//  Created by Jeremy Bannister on 4/26/23.
-//
-
-final class ColorCode_RGBA_256_tests: XCTestCase {
-    func test_asHexString() throws {
+struct ColorCode_RGBA_256_tests {
+    @Test
+    func asHexString() throws {
         func test(_ r: UInt8, _ g: UInt8, _ b: UInt8, _ a: UInt8, _ expected: String) throws {
             try ColorCode_RGBA_256(red: r, green: g, blue: b, alpha: a)
                 .asHexString

@@ -1,12 +1,6 @@
-//
-//  UInt8_asHexString_tests.swift
-//  
-//
-//  Created by Jeremy Bannister on 4/26/23.
-//
-
-final class UInt8_tests: XCTestCase {
-    func test_asHexString() throws {
+struct UInt8_tests {
+    @Test
+    func asHexString() throws {
         func test(_ int: UInt8, _ expected: String) throws {
             try int
                 .asHexString

@@ -1,39 +1,37 @@
-//
-//  StandardHexadecimalColorCode_tests.swift
-//  
-//
-//  Created by Jeremy Bannister on 4/25/23.
-//
-
-final class StandardHexadecimalColorCode_tests: XCTestCase {
-    func test_init_rgba() throws {
-        func randomizedTest() throws {
+struct StandardHexadecimalColorCode_tests {
+    typealias Subject = StandardHexadecimalColorCode
+    
+    @Test
+    func init_rgba() {
+        func randomizedTest() {
             let rgba: ColorCode_RGBA_256 = .generateRandom()
             
-            try StandardHexadecimalColorCode(
+            try! Subject(
                 rgba: rgba
             )
                 .assert(\.rgbaColorCode, equals: rgba)
         }
         
         for _ in (0 ... 1_000) {
-            try randomizedTest()
+            randomizedTest()
         }
     }
 }
 
 extension StandardHexadecimalColorCode_tests {
-    func test_description() {
-        try! StandardHexadecimalColorCode("A07F2B")
+    @Test
+    func description() {
+        try! Subject("A07F2B")
             .description
             .assertEqual(to: "#A07F2B")
     }
 }
 
 extension StandardHexadecimalColorCode_tests {
-    func test_asHexString() {
+    @Test
+    func asHexString() {
         func testSingleSetOfValues(values red: UInt8, _ green: UInt8, _ blue: UInt8, _ alpha: UInt8, expected: String) throws {
-            try StandardHexadecimalColorCode(rgba: .init(red: red, green: green, blue: blue, alpha: alpha))
+            try Subject(rgba: .init(red: red, green: green, blue: blue, alpha: alpha))
                 .asHexString
                 .assertEqual(to: expected)
         }
@@ -78,11 +76,11 @@ extension StandardHexadecimalColorCode_tests {
         try! test(125, 208, 215, "7DD0D7")
     }
     
-    func test_failable_init_String() throws {
+    func failable_init_String() throws {
         func randomizedTest() throws {
             let rgba = ColorCode_RGBA_256.generateRandom()
             
-            try! StandardHexadecimalColorCode(rgba.asHexString)
+            try! Subject(rgba.asHexString)
                 .assertEqual(to: .init(rgba: rgba))
         }
         
